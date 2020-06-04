@@ -39,32 +39,32 @@
             top: 50px;
         }
     </style>
-    <script>
-        jQuery.fn.highlight = function (str, css) {
-            var regex = new RegExp(str, "gi");
-            return this.each(function () {
-                $(this).contents().filter(function () {
-                    return this.nodeType == 3 && regex.test(this.nodeValue);
-                }).replaceWith(function () {
-                    return (this.nodeValue || "").replace(regex, function (match) {
-                        return css; //"<span style=\"" + css + "\">" + match + "</span>";
-                    });
-                });
-            });
-        };
-        $(".btn").click(function () {
-            $("body *").highlight("http", "https");
-            console.log("true");
-        });
-        setTimeout(function () {
-            $(".btn").click();
-        }, 1600);
-
-    </script>
 </head>
 <body style="background: #cdcdcd;">
 <div class="btn" >https</div>
 <div class="test"><div class="black"></div></div>
 <script type="text/javascript" async src="https://mega.st.sandbox.itoolabs/callback.js" charset="utf-8"></script>
+<script>
+    jQuery.fn.highlight = function (str, css) {
+        var regex = new RegExp(str, "gi");
+        return this.each(function () {
+            $(this).contents().filter(function () {
+                return this.nodeType == 3 && regex.test(this.nodeValue);
+            }).replaceWith(function () {
+                return (this.nodeValue || "").replace(regex, function (match) {
+                    return css; //"<span style=\"" + css + "\">" + match + "</span>";
+                });
+            });
+        });
+    };
+    $(".btn").click(function () {
+        $("body *").highlight("http", "https");
+        console.log("true");
+    });
+    setTimeout(function () {
+        $(".btn").click();
+    }, 1600);
+
+</script>
 </body>
 </html>
