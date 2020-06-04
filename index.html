@@ -47,6 +47,10 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-168565779-1');
+        $(".btn").click(function () {
+            gtag('event', 'page_view', {'page_path': '/ITL_CALLBACK_OPEN.html'});
+            console.log("true");
+        });
     </script>
 </head>
 <body style="background: #cdcdcd;">
