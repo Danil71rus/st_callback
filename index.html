@@ -49,18 +49,16 @@
         return null;
     }
     function main() {
-        var hre = location.protocol;
-
-        var qwe = getCookie("hre") || "https:";
-        setCookie("hre", hre, 1);
-
-        if (hre === qwe) {
-            setTimeout(function() {
-                location.protocol = (qwe === "https:") ? "http:" : "https:";
-            }, 7000);
-        }
-
-
+        // var hre = location.protocol;
+        //
+        // var qwe = getCookie("hre") || "https:";
+        // setCookie("hre", hre, 1);
+        //
+        // if (hre === qwe) {
+        //     setTimeout(function() {
+        //         location.protocol = (qwe === "https:") ? "http:" : "https:";
+        //     }, 7000);
+        // }
         randColor("body");
     };
     main();
