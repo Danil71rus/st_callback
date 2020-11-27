@@ -1,82 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Тестовый Callback</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <title>callback on android</title>
     <style>
-        .test {
-            display: block;
-            width: 100%;
-            height: 90vh;
-            background: url("./test.jpg") no-repeat center/contain;
-            /*border: solid 1px black;*/
-        }
-        .black{
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-        }
-        .btn {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            width: 100px;
-            height: 25px;
-            background: forestgreen;
-            border: solid 1px black;
-            border-radius: 5px;
-            text-align: center;
-            color: aliceblue;
-            cursor: pointer;
-            position: absolute;
-            left: 50px;
-            top: 50px;
+        body {
+            background: grey;
+            padding: 50px;
         }
     </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168565779-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <script type="text/javascript" async src="https://mega.st.sandbox.itoolabs/callback.js" charset="utf-8"></script>
 
-        gtag('config', 'UA-168565779-1');
-
-
-        // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        //     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        //     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        // })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        //
-        // ga('create', 'UA-168565779-1', 'auto');
-        // ga('send', 'pageview');
-    </script>
-
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(64669204, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/64669204" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
 </head>
-<body style="background: #cdcdcd;">
-<div class="btn" >https</div>
-<div class="test"><div class="black"></div></div>
-<script type="text/javascript" async src="https://mega.st.sandbox.itoolabs/callback.js" charset="utf-8"></script>
+<body>
+<script>
+    function randColor(elem) {
+        /*СОЗДАЕМ ПЕРЕМЕННЫЕ
+        elem - элемент которому будем менять задний фон
+        code_color - получаем элемент в который будет выводить код цвета
+        r,g,b - отвечают за кодировку и вместе выводят цвет
+        color - в нее записываем полную строку значения цвета
+        */
+        var element = document.querySelector(elem),
+            r = Math.floor(Math.random() * (256)),
+            g = Math.floor(Math.random() * (256)),
+            b = Math.floor(Math.random() * (256)),
+            color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
+
+        element.style.background = color;
+    }
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function main() {
+        var hre = location.protocol;
+
+        var qwe = getCookie("hre") || "https:";
+        setCookie("hre", hre, 1);
+
+        if (hre === qwe) {
+            setTimeout(function() {
+                location.protocol = (qwe === "https:") ? "http:" : "https:";
+            }, 100);
+        }
+
+
+        randColor("body");
+    };
+    main();
+</script>
 </body>
 </html>
